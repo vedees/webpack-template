@@ -1,6 +1,5 @@
 const path = require('path');
 
-
 module.exports = {
   // Entry main JS
   entry: {
@@ -9,8 +8,8 @@ module.exports = {
   // Output main JS
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: 'dist'
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/dist'
   },
   // Server
   devServer: {
