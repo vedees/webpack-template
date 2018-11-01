@@ -1,1 +1,3 @@
-import './some'
+import './js/example'
+
+import './stylus/main.styl'

@@ -1,4 +1,5 @@
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   // Entry main JS
@@ -17,14 +18,23 @@ module.exports = {
     overlay: true
   },
   module: {
-    rules: [
-      {
-        // Babel
+    rules: [{
+        /* Babel */
         test: /\.js$/,
         loader: 'babel-loader',
         // Prevent node_modules !!!
         exclude: '/node_modules/'
+      }, {
+        /* Stylus */
+        test: /\.(css|styl)$/,
+        // loader: 'style-loader!css-loader!postcss-loader!stylus-loader',
+        loader: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
       }
     ]
-  }
+  },
+  // Plugins
+  plugins: [
+    // Extract css
+    new ExtractTextPlugin("styles.css"),
+  ]
 }
