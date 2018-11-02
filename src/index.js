@@ -1,3 +1,3 @@
-import './js/example'
+// import './example/example'
 
 import './stylus/main.styl'
