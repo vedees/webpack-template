@@ -1,4 +1,6 @@
 h1 {
-  color: #ffa500;
+  color: #00f;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }

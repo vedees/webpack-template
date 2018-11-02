@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   // Entry main JS
@@ -28,13 +29,15 @@ module.exports = {
         /* Stylus */
         test: /\.(css|styl)$/,
         // loader: 'style-loader!css-loader!postcss-loader!stylus-loader',
-        loader: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
+        // loader: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
+        // loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'stylus-loader'])
+        loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'stylus-loader'])
       }
     ]
   },
   // Plugins
   plugins: [
     // Extract css
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin("styles.css")
   ]
 }
