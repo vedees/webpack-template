@@ -29,7 +29,7 @@ module.exports = {
         /* Stylus */
         test: /\.(css|styl)$/,
         // loader: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
-        loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'stylus-loader'])
+        loader: ExtractTextPlugin.extract(['css-loader?sourceMap', 'postcss-loader', 'stylus-loader?sourceMap'])
       }
     ]
   },

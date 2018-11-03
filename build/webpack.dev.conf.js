@@ -5,11 +5,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // DEV SETTINGS
 
   // Source map
-  devtool: 'eval-soucemap'
-
+  devtool: 'source-map'
 });
 
 module.exports = new Promise((resolve, reject) => {
 
 resolve(devWebpackConfig)
+
 })
