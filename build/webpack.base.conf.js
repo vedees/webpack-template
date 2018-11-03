@@ -28,9 +28,7 @@ module.exports = {
       }, {
         /* Stylus */
         test: /\.(css|styl)$/,
-        // loader: 'style-loader!css-loader!postcss-loader!stylus-loader',
         // loader: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
-        // loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'stylus-loader'])
         loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'stylus-loader'])
       }
     ]
