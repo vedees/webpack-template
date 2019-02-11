@@ -4,8 +4,8 @@
   "description": "My template",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "dev": "webpack-dev-server --open --config ./build/webpack.dev.conf.js",
+    "build": "webpack --config ./build/webpack.build.conf.js"
   },
   "browserslist": [
     "> 1%",
@@ -18,9 +18,12 @@
     "@babel/preset-env": "^7.2.0",
     "autoprefixer": "^9.4.4",
     "babel-loader": "^8.0.4",
+    "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
     "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.8",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "path": "^0.12.7",
@@ -29,7 +32,8 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "vue": "^2.5.21"
