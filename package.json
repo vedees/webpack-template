@@ -20,7 +20,12 @@
     "url": "https://github.com/vedees/webpack-template/issues"
   },
   "keywords": [
-    "webpack", "webpack4", "merge", "bable", "bable7", "scss"
+    "webpack",
+    "webpack4",
+    "merge",
+    "bable",
+    "bable7",
+    "scss"
   ],
   "license": "MIT",
   "devDependencies": {
