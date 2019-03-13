@@ -11,7 +11,17 @@
     "> 1%",
     "last 3 version"
   ],
-  "author": "Jack",
+  "author": "https://github.com/vedees",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vedees/webpack-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vedees/webpack-template/issues"
+  },
+  "keywords": [
+    "webpack", "webpack4", "merge", "bable", "bable7", "scss"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.2.0",

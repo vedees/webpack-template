@@ -68,6 +68,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].css`,
     }),
+    // Copy HtmlWebpackPlugin and change index.html for another html page
     new HtmlWebpackPlugin({
       hash: false,
       template: `${PATHS.src}/index.html`,
