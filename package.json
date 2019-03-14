@@ -45,12 +45,16 @@
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "vue-loader": "^15.7.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.8",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "vue": "^2.5.21"
+    "vue": "^2.6.8",
+    "vuex": "^3.1.0"
   }
 }

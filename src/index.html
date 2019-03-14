@@ -10,36 +10,27 @@
 
   <!-- main wrapper -->
   <div class="wrapper">
+    <div id="app">
+      <header>
+        <!-- header here -->
+      </header>
 
-    <header>
-      <!-- header here -->
-    </header>
+      <!-- wrapper for content -->
+      <div class="content-wrapper">
 
-    <!-- wrapper for content -->
-    <div class="content-wrapper">
-
-      <!-- section expamle -->
-      <section id="main">
-        <div class="wrapper_example">
+        <!--  expamle section -->
+        <section id="main">
           <div class="container">
             <h1>Webpack</h1>
-            <img src="/assets/img/dog.jpg">
+            <button @click="component = !component">Show vue component</button>
           </div>
-        </div>
-      </section>
+        </section>
+        <example-component v-if="component"></example-component>
 
-      <!-- section expamle 2 -->
-      <section id="main">
-        <div class="wrapper_example--second">
-          <div class="container">
-            <h1>Example second section</h1>
-          </div>
-        </div>
-      </section>
-
-    <footer>
-      <!-- footer here -->
-    </footer>
+      <footer>
+        <!-- footer here -->
+      </footer>
+    </div>
 
     <!-- end content wrapper -->
     </div>
