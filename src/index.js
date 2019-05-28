@@ -2,10 +2,10 @@
 import './js/'
 
 // SCSS
-import './scss/main.scss'
+import './assets/scss/main.scss'
 
 // CSS (example)
-import './css/main.css'
+import './assets/css/main.css'
 
 // Bootstrap (example)
 // import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css'
