@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="container">
-      <h1>Vue message: {{ message }}</h1>
+      <h1>Vue message 2: {{ message }}</h1>
     </div>
   </section>
 </template>
