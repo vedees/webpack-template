@@ -39,10 +39,11 @@ npm run build
 * `src/store` - app store for vue
 * `static/` - folder with extra static assets that will be copied into output folder
 
----
----
+<div align="center">
+  <h2>Settings:</h2>
+</div>
 
-### Import Another libs:
+## Import Another libs:
 1. Install libs
 2. Import libs in `./index.js`
 ``` js
@@ -53,7 +54,7 @@ import Bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 ```
 
-### Import only SASS or CSS libs:
+## Import only SASS or CSS libs:
 1. Install libs
 2. Go to `/assets/scss/utels/libss.scss`
 3. Import libs in node modules
@@ -64,7 +65,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 @import '../../node_modules/flickity/dist/flickity.css';
 ```
 
-### Import js files:
+## Import js files:
 1. Create another js module in `./js/` folder
 2. Import modules in `./js/index.js` file
 ``` js
@@ -76,6 +77,7 @@ import './common.js'
 Default: **Automatic creation any html pages:**
 1. Create another html file in `./src` (main folder)
 2. Open new page `http://localhost:8081/about.html` (Don't forget to RERUN dev server)
+See more - [commit](https://github.com/vedees/webpack-template/commit/249e3ae3b4973a7300f271045178f9f5f431bb89)
 
 **Second method:**
 1. Create another html file in `./src` (main folder)
@@ -96,8 +98,8 @@ Default: **Automatic creation any html pages:**
 ```
 5. Open new page `http://localhost:8081/about.html` (Don't forget to RERUN dev server)
 
-### Vue install
-Default: already have
+## Vue install:
+Default: **already have**
 
 1. Install vue
 ``` bash
@@ -116,7 +118,7 @@ const app = new Vue({
 </div>
 ```
 
-### Vuex install
+## Vuex install:
 1. Install vuex
 ``` bash
 npm install vuex --save
@@ -136,7 +138,7 @@ export default new Vuex.Store({
 })
 ```
 
-### Added Vue Components:
+## Add Vue Components:
 Create your component in `/components/`
 
 **HTML Usage:**
@@ -165,8 +167,8 @@ import example from '~/components/Example.vue'
 <example />
 ```
 
-### Added Fonts:
-Add @font-face in `/assets/scss/utils/fonts.scss`
+## Add Fonts:
+Add @font-face in `/assets/scss/utils/fonts.scss`:
 
 ``` scss
 // Example with Helvetica
@@ -180,7 +182,7 @@ Add @font-face in `/assets/scss/utils/fonts.scss`
 }
 ```
 
-Add vars for font in `/assets/scss/utils/vars.scss`
+Add vars for font in `/assets/scss/utils/vars.scss`:
 
 ``` scss
 $mySecontFont : 'Helvetica-Base', Arial, sans-serif;
