@@ -39,6 +39,34 @@ npm run build
 * `src/store` - app store for vue
 * `static/` - folder with extra static assets that will be copied into output folder
 
+### Added Vue Components:
+Create your component in `/assets/components/`
+
+**HTML Usage:**
+1. Init component in `index.js`:
+``` js
+Vue.component('example-component', require('./components/Example.vue').default)
+```
+2. Any html files:
+``` html
+ <example-component />
+```
+
+**VUE Usage:**
+1. import components in .vue:
+``` js
+import example from '~/components/example.vue'
+```
+2. Register component:
+``` js
+  components: {
+    example
+  }
+```
+3. Init in vue component:
+``` html
+<example />
+```
 
 ### Added Fonts:
 
