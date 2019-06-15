@@ -1,7 +1,8 @@
 <template>
   <section>
     <div class="container">
-      <h1>Vue message 2: {{ message }}</h1>
+      <img src="/assets/img/logo.png" :alt="message">
+      <p>{{ message }}</p>
     </div>
   </section>
 </template>
@@ -10,17 +11,17 @@
 export default {
   data () {
     return {
-      message: null,
+      message: 'Example Vue component',
     }
-  },
-  created () {
-    this.message = this.$store.getters.getMessage
   }
 }
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  color: green;
+.container {
+  text-align: center;
+}
+img {
+  max-width: 200px;
 }
 </style>

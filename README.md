@@ -30,17 +30,90 @@ npm run build
 ## Project Structure:
 
 * `src/index.html` - main app HTML
-* `src/scss` - put custom app SCSS styles here. Don't forget to import them in `main.js`
-* `src/css` - the same as above but CSS here. Don't forget to import them in `main.js`
-* `src/img` - put images here. Don't forget to use correct path: `assets/img/some.jpg`
+* `src/assets/scss` - put custom app SCSS styles here. Don't forget to import them in `index.js`
+* `src/assets/css` - the same as above but CSS here. Don't forget to import them in `index.js`
+* `src/assets/img` - put images here. Don't forget to use correct path: `assets/img/some.jpg`
 * `src/js` - put custom app scripts here
 * `src/index.js` - main app file where you include/import all required libs and init app
 * `src/components` - folder with custom `.vue` components
 * `src/store` - app store for vue
 * `static/` - folder with extra static assets that will be copied into output folder
 
+---
+---
+
+### Import Another libs:
+1. Install libs
+2. Import libs in `./index.js`
+``` js
+// React example
+import React from 'react'
+// Bootstrap example
+import Bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
+```
+
+### Import only SASS or CSS libs:
+1. Install libs
+2. Go to `/assets/scss/utels/libss.scss`
+3. Import libs in node modules
+``` scss
+// Sass librarys example:
+@import '../../node_modules/spinners/stylesheets/spinners';
+// CSS librarys example:
+@import '../../node_modules/flickity/dist/flickity.css';
+```
+
+### Import js files:
+1. Create another js module in `./js/` folder
+2. Import modules in `./js/index.js` file
+``` js
+// another js file for example
+import './common.js'
+```
+
+### Vue install
+Default: already have
+
+1. Install vue
+``` bash
+npm install vue --save
+```
+2. Init vue `index.js`:
+``` js
+const app = new Vue({
+  el: '#app'
+})
+```
+3. Create div id app
+``` html
+<div id="app">
+  <!-- content -->
+</div>
+```
+
+### Vuex install
+1. Install vuex
+``` bash
+npm install vuex --save
+```
+2. Import Vuex
+``` js
+import store from './store'
+```
+3. Create index.js in `./store`
+``` js
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  // vuex content
+})
+```
+
 ### Added Vue Components:
-Create your component in `/assets/components/`
+Create your component in `/components/`
 
 **HTML Usage:**
 1. Init component in `index.js`:
@@ -55,7 +128,7 @@ Vue.component('example-component', require('./components/Example.vue').default)
 **VUE Usage:**
 1. import components in .vue:
 ``` js
-import example from '~/components/example.vue'
+import example from '~/components/Example.vue'
 ```
 2. Register component:
 ``` js
@@ -69,7 +142,6 @@ import example from '~/components/example.vue'
 ```
 
 ### Added Fonts:
-
 Add @font-face in `/assets/scss/utils/fonts.scss`
 
 ``` scss
@@ -89,6 +161,7 @@ Add vars for font in `/assets/scss/utils/vars.scss`
 ``` scss
 $mySecontFont : 'Helvetica-Base', Arial, sans-serif;
 ```
+
 
 ## License
 [MIT](./LICENSE)
