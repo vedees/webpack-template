@@ -1,14 +1,18 @@
 const path = require('path')
+const fs = require('fs')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
+// Main const
 const PATHS = {
   src: path.join(__dirname, '../src'),
   dist: path.join(__dirname, '../dist'),
   assets: 'assets/'
 }
+// Pages const for HtmlWebpackPlugin
+const PAGES = fs.readdirSync(PATHS.src).filter(fileName => fileName.endsWith('.html'))
 
 module.exports = {
   // BASE config
@@ -103,16 +107,24 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].[hash].css`,
     }),
-    // Copy HtmlWebpackPlugin and change index.html for another html page
-    new HtmlWebpackPlugin({
-      template: `${PATHS.src}/index.html`,
-      filename: './index.html',
-      inject: true
-    }),
     new CopyWebpackPlugin([
       { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
       { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
       { from: `${PATHS.src}/static`, to: '' },
-    ])
+    ]),
+
+    // Automatic creation any html pages (Don't forget to RERUN dev server)
+    ...PAGES.map(page => new HtmlWebpackPlugin({
+      template: `${PATHS.src}/${page}`,
+      filename: `./${page}`
+    })),
+
+    // Manual (not Automaticlly) creation any html pages (Don't forget to RERUN dev server and COMMENT lines above)
+    // new HtmlWebpackPlugin({
+    //   template: `${PATHS.src}/index.html`,
+    //   filename: './index.html',
+    //   inject: true
+    // }),
+
   ],
 }

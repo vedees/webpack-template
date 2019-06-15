@@ -72,6 +72,30 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import './common.js'
 ```
 
+## Create Another HTML Files:
+Default: **Automatic creation any html pages:**
+1. Create another html file in `./src` (main folder)
+2. Open new page `http://localhost:8081/about.html` (Don't forget to RERUN dev server)
+
+**Second method:**
+1. Create another html file in `./src` (main folder)
+2. Go to `./build/webpack.base.conf.js`
+3. Comment lines above (create automaticlly html pages)
+4. Create new page in html:
+``` js
+    new HtmlWebpackPlugin({
+      template: `${PATHS.src}/index.html`,
+      filename: './index.html',
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      template: `${PATHS.src}/another.html`,
+      filename: './another.html',
+      inject: true
+    }),
+```
+5. Open new page `http://localhost:8081/about.html` (Don't forget to RERUN dev server)
+
 ### Vue install
 Default: already have
 
