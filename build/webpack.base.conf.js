@@ -12,7 +12,8 @@ const PATHS = {
   assets: 'assets/'
 }
 // Pages const for HtmlWebpackPlugin
-const PAGES = fs.readdirSync(PATHS.src).filter(fileName => fileName.endsWith('.html'))
+const PAGES_DIR = PATHS.src
+const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.html'))
 
 module.exports = {
   // BASE config
@@ -115,13 +116,13 @@ module.exports = {
 
     // Automatic creation any html pages (Don't forget to RERUN dev server)
     ...PAGES.map(page => new HtmlWebpackPlugin({
-      template: `${PATHS.src}/${page}`,
+      template: `${PAGES_DIR}/${page}`,
       filename: `./${page}`
     })),
 
     // Manual (not Automaticlly) creation any html pages (Don't forget to RERUN dev server and COMMENT lines above)
     // new HtmlWebpackPlugin({
-    //   template: `${PATHS.src}/index.html`,
+    //   template: `${PAGES_DIR}/index.html`,
     //   filename: './index.html',
     //   inject: true
     // }),
