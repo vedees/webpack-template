@@ -43,6 +43,32 @@ npm run build
   <h2>Settings:</h2>
 </div>
 
+## Main const:
+Easy way to move all files.
+Default:
+``` js
+const PATHS = {
+  // Path to main app dir
+  src: path.join(__dirname, '../src'),
+  // Path to Output dir
+  dist: path.join(__dirname, '../dist'),
+  // Path to Second Output dir (js/css/fonts etc folder)
+  assets: 'assets/'
+}
+```
+## Customize:
+Change any folders:
+``` js
+const PATHS = {
+  // src must be src
+  src: path.join(__dirname, '../src'),
+  // dist to public
+  dist: path.join(__dirname, '../public'),
+  // assets to static
+  assets: 'static/'
+}
+```
+
 ## Import Another libs:
 1. Install libs
 2. Import libs in `./index.js`
