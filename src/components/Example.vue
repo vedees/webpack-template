@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="container">
-      <img src="/assets/img/logo.png" :alt="message">
+      <img src="/assets/img/logo.png" :alt="message" />
       <p>{{ message }}</p>
     </div>
   </section>
@@ -9,12 +9,12 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      message: 'Example Vue component',
-    }
+      message: "Example Vue component"
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

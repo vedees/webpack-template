@@ -13,15 +13,23 @@
 }
 
 // size to one line
-@mixin size($width,$height: $width) {
+@mixin size($width, $height: $width) {
   width: $width;
   height: $height;
 }
 
 // placeholder helper
 @mixin placeholder {
-  ::-webkit-input-placeholder {@content}
-  :-moz-placeholder           {@content}
-  ::-moz-placeholder          {@content}
-  :-ms-input-placeholder      {@content}
+  ::-webkit-input-placeholder {
+    @content;
+  }
+  :-moz-placeholder {
+    @content;
+  }
+  ::-moz-placeholder {
+    @content;
+  }
+  :-ms-input-placeholder {
+    @content;
+  }
 }
