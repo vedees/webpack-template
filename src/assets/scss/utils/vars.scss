@@ -8,10 +8,16 @@ $mainFontWeight          : 400;
 $mainLineHeight          : 1.4;
 
 $desktopWidth            : 1280px;
-$smDesktopWidth          : 980px;
+$smDesktopWidth          : 1024px;
 $tableWidth              : 768px;
+$smTableWidth            : 640px;
 $phoneWidth              : 480px;
 $smPhoneWidth            : 320px;
+
+/*
+ All colors taken from:
+ https://github.com/vedees/uimini
+*/
 
 // Main color
 $default-color           : #ffffff;

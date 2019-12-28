@@ -45,13 +45,13 @@ ul, li {
 section, .section {
   position: relative;
   padding: 40px 0;
-  @media screen and (max-width: $desktopWidth) {
+  @media screen and (max-width: $smDesktopWidth) {
     padding: 36px 0;
   }
-  @media screen and (max-width: $desktopWidth) {
+  @media screen and (max-width: $tableWidth) {
     padding: 28px 0;
   }
-  @media screen and (max-width: $desktopWidth) {
+  @media screen and (max-width: $phoneWidth) {
     padding: 20px 0;
   }
 }
@@ -76,15 +76,15 @@ section, .section {
   margin: 0 auto;
   max-width: $desktopWidth;
   @media screen and (max-width: $smDesktopWidth) {
-    max-width: tableWidth;
+    max-width: $tableWidth;
   }
   @media screen and (max-width: $tableWidth) {
-    max-width: phoneWidth;
+    max-width: $phoneWidth;
   }
   @media screen and (max-width: $phoneWidth) {
-    max-width: smPhoneWidth;
+    max-width: $smPhoneWidth;
   }
 }
 
-// Modules
+// Modules:3
 // @import "modules/my-module.scss";
