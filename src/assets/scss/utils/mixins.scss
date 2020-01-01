@@ -33,3 +33,46 @@
     @content;
   }
 }
+
+/* Fonts Mixin:
+   ========================================================================== */
+
+/*
+  By default template support only modern format fonts without svg!
+  if ypu need svg comments lines bellow and uncomments "Fonts helper all format fonts"
+*/
+
+// Fonts helper only modern format fonts
+@mixin font-face(
+  $font-family,
+  $file-path,
+  $weight: normal,
+  $style: normal,
+  $asset-pipeline: false
+) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+
+    src: url("#{$file-path}.woff") format("woff"),
+      url("#{$file-path}.woff2") format("woff2");
+  }
+}
+
+// Fonts helper all format fonts
+//@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) {
+//  @font-face {
+//    font-family: $font-family;
+//    font-weight: $weight;
+//    font-style: $style;
+//    src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'), url('#{$file-path}.woff') format('woff'), url('#{$file-path}.woff2') format('woff2'), url('#{$file-path}.svg') format('svg'), url('#{$file-path}.ttf') format('truetype');
+//
+
+// Fonts helper only modern format fonts
+// @mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) {
+//  @font-face {
+//    font-family: $font-family;
+//    font-weight: $weight;
+//    font-style: $style;
+//    src: url('#{$file-path}.woff') format('woff'), url('#{$file-path}.woff2') format('woff2'), url('#{$file-path}.svg') format('svg');
