@@ -38,8 +38,17 @@
    ========================================================================== */
 
 /*
-  By default template support only modern format fonts without svg. Only: .woff, .woffs
+  By default template support only modern format fonts
+  Without svg. Only: .woff, .woffs
   if ypu need svg comments lines bellow and uncomments "Fonts helper all format fonts"
+
+  Usage:
+    1. Put your font to `src/assets/fonts/FOLDERNAME/FONTNAME`
+      FOLLOW: Files Required
+      Example: .woff, .woffs formats
+    2. Go to fonts.scss
+    3. Use mixon
+      Example: @include font-face("OpenSans", "../fonts/OpenSans/opensans");
 */
 
 /*
