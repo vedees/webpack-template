@@ -285,25 +285,14 @@ By default template support only modern format fonts: .woff, .woffs;
 
 If ypu need svg or more formaths use another mixin in `src/assets/scss/utils/mixin.scss`
 
-Usage:
-1. Put your font to `src/assets/fonts/FOLDERNAME/FONTNAME`. FOLLOW: Files Required: Example: `.woff, .woffs` formats;
+**Usage:**
+1. Put your font to `src/assets/fonts/FOLDERNAME/FONTNAME`.
+FOLLOW: Files Required: 
+Example: `.woff, .woffs` formats;
 2. Go to `fonts.scss`;
 3. Use mixin
 Example: `@include font-face("OpenSans", "../fonts/OpenSans/opensans");`,
 Example 2: `@include font-face("OpenSans", "../fonts/OpenSans/opensansItalic", 400, italic);`.
-
-``` scss
-// Example with Helvetica
-@font-face {
-  font-family: "Helvetica-Base";
-  src: url('/assets/fonts/Helvetica/Base/Helvetica-Base.eot'); /* IE9 Compat Modes */
-  src: url('/assets/fonts/Helvetica/Base/Helvetica-Base.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/assets/fonts/Helvetica/Base/Helvetica-Base.woff') format('woff'), /* Pretty Modern Browsers */
-       url('/assets/fonts/Helvetica/Base/Helvetica-Base.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('/assets/fonts/Helvetica/Base/Helvetica-Base.svg') format('svg'); /* Legacy iOS */
-}
-
-
 
 ## License
 [MIT](./LICENSE)
