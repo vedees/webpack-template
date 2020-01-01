@@ -8,9 +8,10 @@
 // an example of including fonts using mixin :
 @import "mixins";
 
-/*
-  Example with mixin:
 
+// 1. Example with mixin:
+
+/*
   // Base OpenSans:
   @include font-face("OpenSans", "../fonts/OpenSans/opensans");
   @include font-face("OpenSans", "../fonts/OpenSans/opensanslight", 300);
@@ -24,9 +25,9 @@
   @include font-face("OpenSans", "../fonts/OpenSans/opensansBoldItalic", bold, italic);
 */
 
-/*
-  Example handle menthod (without mixin):
 
+// 2. Example handle menthod (without mixin):
+/*
   // Base Helvetica:
   @font-face {
     font-family: "Helvetica-Base";
