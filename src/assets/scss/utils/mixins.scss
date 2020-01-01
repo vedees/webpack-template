@@ -35,6 +35,7 @@
 }
 
 /* Fonts Helpers:
+   Read more: https://github.com/vedees/webpack-template/blob/master/README.md#add-fonts
    ========================================================================== */
 
 /*
@@ -49,21 +50,18 @@
     2. Go to fonts.scss
     3. Use mixon
       Example: @include font-face("OpenSans", "../fonts/OpenSans/opensans");
+
+    Required parameters: @family, @family
+    Minor parameters: @weight, @style, @pipeline
+
+    Example Base:
+      @include font-face("OpenSans", "../fonts/OpenSans/opensans");
+    Example Situation:
+      @include font-face("OpenSans", "../fonts/OpenSans/opensansItalic", 400, italic);
 */
 
-/*
-  For modern format fonts (by default)
-  Required parameters: @family, @family
-  Minor parameters: @weight, @style, @pipeline
-
-  Example Base:
-    @include font-face("OpenSans", "../fonts/OpenSans/opensans");
-  Example Situation:
-    @include font-face("OpenSans", "../fonts/OpenSans/opensansItalic", 400, italic);
-
-  * Files Required:
-    .woff, .woffs
-*/
+// Default: For modern format fonts
+// Files Required .woff, .woffs
 
 @mixin font-face(
   $font-family,
@@ -82,58 +80,48 @@
   }
 }
 
-/*
-  For Modern format fonts + .svg
-  Required parameters: @family, @family
-  Minor parameters: @weight, @style, @pipeline
-
-  Example Base:
-    @include font-face("OpenSans", "../fonts/OpenSans/opensans");
-  Example Situation:
-    @include font-face("OpenSans", "../fonts/OpenSans/opensansItalic", 400, italic);
-
-  * Files Required:
-    .woff, .woffs, .svg
-*/
+// For Modern format fonts + .svg
+// Files Required .woff, .woffs, .svg
 
 
-/*
-@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) {
- @font-face {
-   font-family: $font-family;
-   font-weight: $weight;
-   font-style: $style;
+// @mixin font-face(
+//   $font-family,
+//   $file-path,
+//   $weight: normal,
+//   $style: normal,
+//   $asset-pipeline: false
+// ) {
+//   @font-face {
+//     font-family: $font-family;
+//     font-weight: $weight;
+//     font-style: $style;
 
-   src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
-    url('#{$file-path}.woff') format('woff'),
-    url('#{$file-path}.woff2') format('woff2'),
-    url('#{$file-path}.svg') format('svg'),
-    url('#{$file-path}.ttf') format('truetype');
-*/
+//     src: url("#{$file-path}.eot?#iefix") format("embedded-opentype"),
+//       url("#{$file-path}.woff") format("woff"),
+//       url("#{$file-path}.woff2") format("woff2"),
+//       url("#{$file-path}.svg") format("svg"),
+//       url("#{$file-path}.ttf") format("truetype");
+//   }
+// }
 
+// For Modern format fonts + .svg
+// Files Required ,eot. .woff, .woffs, .svg, .ttf
 
-/*
-  For All fonts formats
-  Required parameters: @family, @family
-  Minor parameters: @weight, @style, @pipeline
-
-  Example Base:
-    @include font-face("OpenSans", "../fonts/OpenSans/opensans");
-  Example Situation:
-    @include font-face("OpenSans", "../fonts/OpenSans/opensansItalic", 400, italic);
-
-  * Files Required:
-    .woff, .woffs, .svg
-*/
-
-@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) {
- @font-face {
-   font-family: $font-family;
-   font-weight: $weight;
-   font-style: $style;
-   src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
-    url('#{$file-path}.woff') format('woff'),
-    url('#{$file-path}.woff2') format('woff2'),
-    url('#{$file-path}.svg') format('svg'),
-    url('#{$file-path}.ttf') format('truetype');
- }
+// @mixin font-face(
+//   $font-family,
+//   $file-path,
+//   $weight: normal,
+//   $style: normal,
+//   $asset-pipeline: false
+// ) {
+//   @font-face {
+//     font-family: $font-family;
+//     font-weight: $weight;
+//     font-style: $style;
+//     src: url("#{$file-path}.eot?#iefix") format("embedded-opentype"),
+//       url("#{$file-path}.woff") format("woff"),
+//       url("#{$file-path}.woff2") format("woff2"),
+//       url("#{$file-path}.svg") format("svg"),
+//       url("#{$file-path}.ttf") format("truetype");
+//   }
+// }
