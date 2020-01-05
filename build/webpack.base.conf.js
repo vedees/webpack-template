@@ -116,7 +116,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "~": PATHS.src
+      "~": PATHS.src,
+      "@": `${PATHS.src}/js`
     }
   },
   plugins: [
