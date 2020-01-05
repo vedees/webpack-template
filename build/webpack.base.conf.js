@@ -6,7 +6,6 @@ const fs = require("fs");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { VueLoaderPlugin } = require("vue-loader");
 
 // Main const. Feel free to change it
 const PATHS = {
@@ -54,16 +53,6 @@ module.exports = {
         test: /\.js$/,
         loader: "babel-loader",
         exclude: "/node_modules/"
-      },
-      {
-        // Vue
-        test: /\.vue$/,
-        loader: "vue-loader",
-        options: {
-          loader: {
-            scss: "vue-style-loader!css-loader!sass-loader"
-          }
-        }
       },
       {
         // Fonts
@@ -127,12 +116,10 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "~": PATHS.src,
-      vue$: "vue/dist/vue.js"
+      "~": PATHS.src
     }
   },
   plugins: [
-    new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].[contenthash].css`
     }),
