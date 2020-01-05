@@ -1,4 +1,12 @@
-// Main js file
-// see more: https://github.com/vedees/webpack-template/blob/master/README.md#import-js-files
+import React from "react";
+import ReactDOM from "react-dom";
 
-console.log("its work");
+import App from "./App";
+
+// Note: You can import modules and use render for components if you wanna use only components like modals etc
+const el = document.getElementById("root");
+
+ReactDOM.render(
+  <App />,
+  el
+);
