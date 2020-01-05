@@ -54,11 +54,6 @@ module.exports = {
         loader: "babel-loader",
         exclude: "/node_modules/"
       },
-      // {
-      //   // Html for fix react
-      //   test: /\.html$/,
-      //   loader: 'file-loader?name=[name].[ext]',
-      // },
       {
         // Fonts
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
