@@ -61,7 +61,7 @@
 */
 
 // Default: For modern format fonts
-// Files Required .woff, .woffs
+// Files Required: .woff, .woffs
 
 @mixin font-face(
   $font-family,
@@ -81,7 +81,7 @@
 }
 
 // For Modern format fonts + .svg
-// Files Required .woff, .woffs, .svg
+// Files Required: .woff, .woffs, .svg
 
 
 // @mixin font-face(
@@ -105,7 +105,7 @@
 // }
 
 // For Modern format fonts + .svg
-// Files Required ,eot. .woff, .woffs, .svg, .ttf
+// Files Required: eot. .woff, .woffs, .svg, .ttf
 
 // @mixin font-face(
 //   $font-family,
