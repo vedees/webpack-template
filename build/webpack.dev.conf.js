@@ -1,8 +1,10 @@
 /* Development config:
    ========================================================================== */
-
 const webpack = require("webpack");
-const merge = require("webpack-merge");
+
+// Source: https://github.com/survivejs/webpack-merge
+const { merge } = require("webpack-merge");
+// Base config
 const baseWebpackConfig = require("./webpack.base.conf");
 
 const devWebpackConfig = merge(baseWebpackConfig, {
