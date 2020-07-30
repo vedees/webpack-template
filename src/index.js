@@ -11,7 +11,7 @@ import './assets/scss/main.scss'
 window.Vue = require('vue')
 
 // Vue components (for use in html)
-Vue.component('example-component', require('./components/Example.vue').default)
+Vue.component('example-component', require('./js/components/Example.vue').default)
 
 // Vue init
 const app = new Vue({
