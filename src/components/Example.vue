@@ -13,10 +13,10 @@
 export default {
   data() {
     return {
-      message: "Example Vue component"
-    };
+      message: 'Example Vue component'
+    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

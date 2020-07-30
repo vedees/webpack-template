@@ -1,5 +1,5 @@
 /* Mixins:
-   ========================================================================== */
+  ========================================================================== */
 
 // px to rem
 @function rem($pixels, $context: $mainFontSize) {
@@ -75,14 +75,13 @@
     font-weight: $weight;
     font-style: $style;
 
-    src: url("#{$file-path}.woff") format("woff"),
-      url("#{$file-path}.woff2") format("woff2");
+    src: url('#{$file-path}.woff') format('woff'),
+      url('#{$file-path}.woff2') format('woff2');
   }
 }
 
 // For Modern format fonts + .svg
 // Files Required: .woff, .woffs, .svg
-
 
 // @mixin font-face(
 //   $font-family,

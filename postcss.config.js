@@ -9,7 +9,8 @@ module.exports = {
     require('autoprefixer'),
     require('cssnano')({
       preset: [
-        'default', {
+        'default',
+        {
           discardComments: {
             removeAll: true
           }

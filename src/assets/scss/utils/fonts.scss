@@ -1,16 +1,16 @@
 /* Fonts:
-   https://github.com/vedees/webpack-template/blob/master/README.md#import-js-files
-   ========================================================================== */
+  https://github.com/vedees/webpack-template/blob/master/README.md#import-js-files
+  ========================================================================== */
 
-@import "mixins";
+@import 'mixins';
 
 /*
-  Сhoose one of the ways:
-    1. handle menthod,
-    2. use mixin;
+  One of the ways:
+  1. handle method,
+  2. use mixin;
 */
 
-// 1. Example handle menthod (without mixin):
+// 1. Example handle method (without mixin):
 
 /*
   // Base Helvetica (example):
@@ -25,8 +25,11 @@
 */
 
 // 2. Example with mixin (example):
-// NOTE: do NOT use expansion (.woff, .svg etc) for path! Path will be '/assets/fonts/OpenSans/opensans';
-// NOTE-2: files required: `.woff, .woffs` (by default) OR `eot. .woff, .woffs, .svg, .ttf` if you use another mixin;
+
+/* NOTE:
+  1. do NOT use expansion (.woff, .svg etc) for path! Path will be '/assets/fonts/OpenSans/opensans;
+  2, files required: `.woff, .woffs` (by default) OR `eot. .woff, .woffs, .svg, .ttf` if you use another mixin.
+*/
 
 // Base OpenSans:
 // @include font-face("OpenSans", "/assets/fonts/OpenSans/opensans");
