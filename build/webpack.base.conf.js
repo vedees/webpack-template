@@ -33,11 +33,6 @@ module.exports = {
   output: {
     filename: `${PATHS.assets}js/[name].[contenthash].js`,
     path: PATHS.dist,
-    /*
-      publicPath: '/' - relative path for dist folder (js,css etc)
-      publicPath: './' (dot before /) - absolute path for dist folder (js,css etc)
-    */
-    publicPath: '/'
   },
   optimization: {
     splitChunks: {
@@ -71,15 +66,16 @@ module.exports = {
       },
       {
         // Fonts
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /(\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$|font.*\.svg$)/,
         loader: 'file-loader',
         options: {
+          outputPath: 'assets/fonts',
           name: '[name].[ext]'
         }
       },
       {
         // images / icons
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /(\.(png|jpg|gif)$|^((?!font).)*\.svg$)/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]'
@@ -140,23 +136,18 @@ module.exports = {
     // Vue loader
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: `${PATHS.assets}css/[name].[contenthash].css`
+      filename: `[name].[contenthash].css`
     }),
     new CopyWebpackPlugin({
       patterns: [
         // Images:
         {
-          from: `${PATHS.src}/${PATHS.assets}img`,
-          to: `${PATHS.assets}img`
-        },
-        // Fonts:
-        {
-          from: `${PATHS.src}/${PATHS.assets}fonts`,
-          to: `${PATHS.assets}fonts`
+          from: `./src/assets/img`,
+          to: `assets/img`
         },
         // Static (copy to '/'):
         {
-          from: `${PATHS.src}/static`,
+          from: `./src/static`,
           to: ''
         }
       ]

@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="container">
-      <img src="/assets/img/logo.png" :alt="message" />
+      <img src="assets/img/logo.png" :alt="message" />
       <p>{{ message }}</p>
     </div>
   </section>
