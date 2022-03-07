@@ -14,7 +14,7 @@ Thanks for your support!
 
 ## Build Setup:
 
-``` bash
+```bash
 # Download repository:
 git clone https://github.com/vedees/webpack-template webpack-template
 
@@ -33,24 +33,26 @@ npm run build
 
 ## Project Structure:
 
-* `src/index.html` - main app HTML
-* `src/assets/scss` - put custom app SCSS styles here. Don't forget to import them in `index.js`
-* `src/assets/css` - the same as above but CSS here. Don't forget to import them in `index.js`
-* `src/assets/img` - put images here. Don't forget to use correct path: `assets/img/some.jpg`
-* `src/js` - put custom app scripts here
-* `src/index.js` - main app file where you include/import all required libs and init app
-* `src/components` - folder with custom `.vue` components
-* `src/store` - app store for vue
-* `static/` - folder with extra static assets that will be copied into output folder
+- `src/index.html` - main app HTML
+- `src/assets/scss` - put custom app SCSS styles here. Don't forget to import them in `index.js`
+- `src/assets/css` - the same as above but CSS here. Don't forget to import them in `index.js`
+- `src/assets/img` - put images here. Don't forget to use correct path: `assets/img/some.jpg`
+- `src/js` - put custom app scripts here
+- `src/index.js` - main app file where you include/import all required libs and init app
+- `src/components` - folder with custom `.vue` components
+- `src/store` - app store for vue
+- `static/` - folder with extra static assets that will be copied into output folder
 
 <div align="center">
   <h2>Settings:</h2>
 </div>
 
 ## Main const:
+
 Easy way to move all files.
 Default:
-``` js
+
+```js
 const PATHS = {
   // Path to main app dir
   src: path.join(__dirname, '../src'),
@@ -60,9 +62,12 @@ const PATHS = {
   assets: 'assets/'
 }
 ```
+
 ## Customize:
+
 Change any folders:
-``` js
+
+```js
 const PATHS = {
   // src must be src
   src: path.join(__dirname, '../src'),
@@ -74,9 +79,11 @@ const PATHS = {
 ```
 
 ## Import Another libs:
+
 1. Install libs
 2. Import libs in `./index.js`
-``` js
+
+```js
 // React example
 import React from 'react'
 // Bootstrap example
@@ -85,10 +92,12 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 ```
 
 ## Import only SASS or CSS libs:
+
 1. Install libs
 2. Go to `/assets/scss/utils/libs.scss`
 3. Import libs in node modules
-``` scss
+
+```scss
 // Sass librarys example:
 @import '../../node_modules/spinners/stylesheets/spinners';
 // CSS librarys example:
@@ -96,64 +105,81 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 ```
 
 ## Import js files:
+
 1. Create another js module in `./js/` folder
 2. Import modules in `./js/index.js` file
-``` js
+
+```js
 // another js file for example
 import './common.js'
 ```
 
 ## HTML Dir Folder:
+
 #### Default:
-* .html dir: `./src`
-* Configurations: in `./build/webpack.base.conf.js`
-``` js
+
+- .html dir: `./src`
+- Configurations: in `./build/webpack.base.conf.js`
+
+```js
 const PAGES_DIR = PATHS.src
 ```
+
 **Usage:**
 All files must be created in the `./src` folder.
 Example:
-``` bash
+
+```bash
 ./src/index.html
 ./src/about.html
 ```
 
 #### Change HTML Default Dir Folder:
+
 Example for `./src/pages`:
+
 1. Create folder for all html files in `./src`. Be like: `./src/pages`
 2. Change `./build/webpack.base.conf.js` const PAGES_DIR:
-``` js
+
+```js
 // Old path
 // const PAGES_DIR = PATHS.src
 
 // Your new path
 const PAGES_DIR = `${PATHS.src}/pages`
 ```
-3. Rerun webpack dev server
 
+3. Rerun webpack dev server
 
 **Usage:**
 All files must be created in the `./src/pages` folder.
 Example:
-``` bash
+
+```bash
 ./src/pages/index.html
 ./src/pages/about.html
 ```
 
 ## Create Another HTML Files:
+
 #### Default:
+
 Automatic creation any html pages:
+
 1. Create another html file in `./src` (main folder)
 2. Open new page `http://localhost:8081/about.html` (Don't forget to RERUN dev server)
-See more - [commit](https://github.com/vedees/webpack-template/commit/249e3ae3b4973a7300f271045178f9f5f431bb89)
+   See more - [commit](https://github.com/vedees/webpack-template/commit/249e3ae3b4973a7300f271045178f9f5f431bb89)
 
 #### Second method:
+
 Manual (not Automaticlly) creation any html pages (Don't forget to RERUN dev server and COMMENT lines above)
+
 1. Create another html file in `./src` (main folder)
 2. Go to `./build/webpack.base.conf.js`
 3. Comment lines above (create automaticlly html pages)
 4. Create new page in html:
-``` js
+
+```js
     new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/index.html`,
       filename: './index.html',
@@ -165,12 +191,15 @@ Manual (not Automaticlly) creation any html pages (Don't forget to RERUN dev ser
       inject: true
     }),
 ```
+
 5. Open new page `http://localhost:8081/about.html` (Don't forget to RERUN dev server)
 
 #### Third method: (BEST)
+
 Сombine the first method and the second.
 Example:
-``` js
+
+```js
     ...PAGES.map(page => new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/${page}`,
       filename: `./${page}`
@@ -187,38 +216,49 @@ Example:
     }),
 ```
 
-
 ## Vue install:
+
 Default: **already have**
 
 1. Install vue
-``` bash
+
+```bash
 npm install vue --save
 ```
+
 2. Init vue `index.js`:
-``` js
+
+```js
 const app = new Vue({
   el: '#app'
 })
 ```
+
 3. Create div id app
-``` html
+
+```html
 <div id="app">
   <!-- content -->
 </div>
 ```
 
 ## Vuex install:
+
 1. Install vuex
-``` bash
+
+```bash
 npm install vuex --save
 ```
+
 2. Import Vuex
-``` js
+
+```js
 import store from './store'
 ```
+
 3. Create index.js in `./store`
-``` js
+
+```js
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
@@ -229,76 +269,97 @@ export default new Vuex.Store({
 ```
 
 ## Add Vue Components:
+
 Create your component in `/components/`
 
 **HTML Usage:**
+
 1. Init component in `index.js`:
-``` js
+
+```js
 Vue.component('example-component', require('./components/Example.vue').default)
 ```
+
 2. Any html files:
-``` html
- <example-component />
+
+```html
+<example-component />
 ```
 
 **VUE Usage:**
+
 1. import components in .vue:
-``` js
+
+```js
 import example from '~/components/Example.vue'
 ```
+
 2. Register component:
-``` js
-  components: {
-    example
-  }
+
+```js
+components: {
+  example
+}
 ```
+
 3. Init in vue component:
-``` html
+
+```html
 <example />
 ```
 
 ## Add Fonts:
 
 Сhoose one of the ways:
+
 1. Handle menthod,
 2. Use mixin;
 
 ### Handle:
+
 Add @font-face in `/assets/scss/utils/fonts.scss`:
 
-``` scss
+```scss
 // Example with Helvetica
 @font-face {
-  font-family: "Helvetica-Base";
+  font-family: 'Helvetica-Base';
   src: url('/assets/fonts/Helvetica/Base/Helvetica-Base.eot'); /* IE9 Compat Modes */
-  src: url('/assets/fonts/Helvetica/Base/Helvetica-Base.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/assets/fonts/Helvetica/Base/Helvetica-Base.woff') format('woff'), /* Pretty Modern Browsers */
-       url('/assets/fonts/Helvetica/Base/Helvetica-Base.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('/assets/fonts/Helvetica/Base/Helvetica-Base.svg') format('svg'); /* Legacy iOS */
+  src: url('/assets/fonts/Helvetica/Base/Helvetica-Base.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */ url('/assets/fonts/Helvetica/Base/Helvetica-Base.woff') format('woff'),
+    /* Pretty Modern Browsers */
+      url('/assets/fonts/Helvetica/Base/Helvetica-Base.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+      url('/assets/fonts/Helvetica/Base/Helvetica-Base.svg') format('svg'); /* Legacy iOS */
 }
 ```
 
 Add vars for font in `/assets/scss/utils/vars.scss`:
 
-``` scss
-$mySecontFont : 'Helvetica-Base', Arial, sans-serif;
+```scss
+$mySecontFont: 'Helvetica-Base', Arial, sans-serif;
 ```
 
 ### Or with mixin:
+
 By default template support only modern format fonts: .woff, .woffs;
 
 If ypu need svg or more formaths use another mixin in `src/assets/scss/utils/mixin.scss`
 
 **Usage:**
+
 1. Put your font to `src/assets/fonts/FOLDERNAME/FONTNAME`.
-FOLLOW: Files Required:
-Example: `.woff, .woffs` formats;
+   FOLLOW: Files Required:
+   Example: `.woff, .woffs` formats;
 2. Go to `fonts.scss`;
 3. Use mixin
-Example: `@include font-face("OpenSans", "../fonts/OpenSans/opensans");`,
-Example 2: `@include font-face("OpenSans", "../fonts/OpenSans/opensansItalic", 400, italic);`.
+   Example: `@include font-face("OpenSans", "../fonts/OpenSans/opensans");`,
+   Example 2: `@include font-face("OpenSans", "../fonts/OpenSans/opensansItalic", 400, italic);`.
 
-## License
+## License:
+
 [MIT](./LICENSE)
 
 Copyright (c) 2018-present, [Evgenii Vedegis](https://github.com/vedees)
+
+[buymeacoffee-shield]: https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg
+[buymeacoffee]: https://www.buymeacoffee.com/vedegis
