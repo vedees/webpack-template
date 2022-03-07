@@ -7,6 +7,10 @@
   <p>Author: <a href="https://tocode.ru" target="_blank">To code</a> | <a href="https://www.youtube.com/playlist?list=PLkCrmfIT6LBQWN02hNj6r1daz7965GxsV" target="_blank">Youtube guide in Russian</a></p>
 </div>
 
+Everybody knows that developing runs on coffee!
+Thanks for your support!
+
+[![Buy me a coffee][buymeacoffee-shield]][buymeacoffee]
 
 ## Build Setup:
 
@@ -137,7 +141,7 @@ Example:
 ```
 
 ## Create Another HTML Files:
-#### Default: 
+#### Default:
 Automatic creation any html pages:
 1. Create another html file in `./src` (main folder)
 2. Open new page `http://localhost:8081/about.html` (Don't forget to RERUN dev server)
@@ -287,7 +291,7 @@ If ypu need svg or more formaths use another mixin in `src/assets/scss/utils/mix
 
 **Usage:**
 1. Put your font to `src/assets/fonts/FOLDERNAME/FONTNAME`.
-FOLLOW: Files Required: 
+FOLLOW: Files Required:
 Example: `.woff, .woffs` formats;
 2. Go to `fonts.scss`;
 3. Use mixin
