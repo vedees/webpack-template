@@ -9,14 +9,28 @@ const baseWebpackConfig = require('./webpack.base.conf')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
   devServer: {
-    contentBase: baseWebpackConfig.externals.paths.dist,
-    port: 8081,
-    overlay: {
-      warnings: true,
-      errors: true
-    }
+    compress: true,
+    hot: true,
+
+    client: {
+      progress: false,
+      overlay: {
+        errors: false,
+        warnings: false
+      }
+    },
+
+    // fix CORS:
+    historyApiFallback: true
+
+    // contentBase: baseWebpackConfig.externals.paths.dist,
+    // port: 8081,
+    // overlay: {
+    //   warnings: true,
+    //   errors: true
+    // }
   },
   plugins: [
     new webpack.SourceMapDevToolPlugin({

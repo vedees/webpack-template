@@ -1,16 +1,25 @@
 {
   "name": "webpacktemplate",
   "version": "1.0.0",
-  "description": "My template",
+  "description": "Webpack template",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open --config ./build/webpack.dev.conf.js",
-    "build": "webpack --config ./build/webpack.build.conf.js"
+    "start": "webpack serve --config webpack/webpack.dev.conf.js",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.build.conf.js"
   },
-  "browserslist": [
-    "> 1%",
-    "last 3 version"
-  ],
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "last 1 year",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "author": "https://github.com/vedees",
   "repository": {
     "type": "git",
@@ -21,38 +30,37 @@
   },
   "keywords": [
     "webpack",
-    "webpack4",
-    "merge",
-    "bable",
-    "bable7",
-    "scss",
-    "vue"
+    "babel",
+    "typescript",
+    "scss"
   ],
   "license": "MIT",
-  "dependencies": {
-    "vue": "^2.6.11"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "autoprefixer": "^9.8.5",
-    "babel-loader": "^8.1.0",
-    "copy-webpack-plugin": "^6.0.3",
-    "css-loader": "^4.1.1",
-    "cssnano": "^4.1.10",
-    "file-loader": "^6.0.0",
-    "html-webpack-plugin": "^4.3.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.14.1",
-    "postcss-loader": "^3.0.0",
-    "sass-loader": "^9.0.2",
-    "style-loader": "^1.2.1",
-    "vue-loader": "^15.9.3",
-    "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.0.9"
+    "@babel/core": "^7.22.10",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^9.1.3",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "babel-plugin-preval": "^5.1.0",
+    "babel-plugin-transform-commonjs": "^1.1.6",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "babel-plugin-transform-replace-expressions": "^0.2.0",
+    "copy-webpack-plugin": "latest",
+    "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-loader": "^7.3.3",
+    "postcss-preset-env": "^9.1.1",
+    "sass": "^1.64.2",
+    "sass-loader": "^13.3.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.9.0"
   }
 }

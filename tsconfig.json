@@ -1,0 +1,46 @@
+/*
+  TypeScript compiler is NOT using for build the project!
+  so here's only type-checking options
+
+  use: `yarn tscheck` or `yarn tscheck:watch`
+
+  you can also set up eslint in vs-code to see live time errors without `tscheck`
+*/
+
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "lib": ["ESNext", "ES6", "DOM", "DOM.Iterable"],
+    "jsx": "react",
+    "noEmit": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+
+    // strict options
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+
+    // js
+    "allowJs": true,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+
+    // module resolution options
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+
+    // paths:
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+
+  "exclude": ["scripts", "webpack", "dist", "node_modules", "**/*.spec.ts"],
+
+  // ? .jsx seems useless
+  "include": ["*.d.ts", "src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+}
