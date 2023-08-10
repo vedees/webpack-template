@@ -1,20 +1,21 @@
 /* Base config:
   ========================================================================== */
-
-const fs = require('fs')
 const path = require('path')
+
+//
+const defines = require('./webpack-defines')
 
 // copy files from dev (i.g. `assets/img/*`) to dist (i.g `static/img/*`)
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
 // extract css from js to another files
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// html support
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // Main const
 const paths = {
   src: path.join(__dirname, '../src'),
-  dist: path.join(__dirname, '../dist'),
+  dist: path.join(__dirname, '../dist2'),
   public: path.join(__dirname, '../public'),
   assets: 'assets/'
 }
@@ -28,11 +29,11 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: {
-    app: `${paths.src}/index.ts`
+    app: `${defines.src}/index.ts`
   },
   output: {
-    path: paths.dist,
-    filename: `${paths.assets}js/[name].[contenthash].js`
+    path: defines.dist,
+    filename: `${defines.assets}js/[name].[contenthash].js`
   },
   module: {
     rules: [
@@ -112,11 +113,9 @@ module.exports = {
       }
     ]
   },
-
   resolve: {
     alias: {
-      '~': paths.src, // example: `import DogIcon from "~/assets/img/dog.svg"`
-      '@': `${paths.src}/js` // example: `import { sortBy } from "@/utils/sort.js"`
+      '@': defines.src
     }
   },
   plugins: [
@@ -125,7 +124,7 @@ module.exports = {
       title: 'My app',
       // favicon: paths.src + '/assets/icons/favicon.png',
       // template file
-      template: paths.public + '/index.html',
+      template: defines.public + '/index.html',
       // output file
       filename: 'index.html'
     }),
@@ -133,7 +132,7 @@ module.exports = {
     // Extract css from js (it's a basic setup to keep css in `css` folder)
     // https://webpack.js.org/plugins/mini-css-extract-plugin/
     new MiniCssExtractPlugin({
-      filename: 'assets/css/[name].css',
+      filename: `${defines.assets}/css/[name].css`,
       chunkFilename: '[id].css'
     }),
 
@@ -141,14 +140,25 @@ module.exports = {
     // PS: do not pass const to the `to` key
     new CopyWebpackPlugin({
       patterns: [
+        // `shared/img` to `dist/static/img`
         {
-          from: `${paths.src}/shared/img`,
-          to: `../dist/static/img`
-        }
+          from: `${defines.src}/shared/img`,
+          to: `${defines.dist}/${defines.static}`
+        },
+
+        // others:
+        // `shared/fonts` to `dist/static/fonts`
         // {
-        //   from: `${paths.src}/app/shared/assets/icons`,
-        //   to: `../dist/static/icons`
-        // }
+        //   from: `${defines.src}/shared/fonts`,
+        //   to: `${defines.dist}/${defines.static}`
+        // },
+
+        // misc
+        // `shared/misc` to `dist/`
+        {
+          from: `${defines.src}/shared/img`,
+          to: `${defines.dist}/${defines.static}`
+        }
       ]
     })
   ],
