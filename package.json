@@ -5,7 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --config webpack/webpack.dev.js",
-    "build": "NODE_ENV=production webpack --config webpack/webpack.prod.js",
+    "build": "yarn run clean & NODE_ENV=production webpack --config webpack/webpack.prod.js",
+    "clean": "rimraf dist",
+    "format": "prettier --cache --write '**/*.{js,css,md,mdx,ts,tsx,yml}'",
+    "format:diff": "prettier --cache --list-different '**/*.{js,css,md,mdx,ts,tsx,yml}'",
+    "lint": "eslint '**/*.{js,ts,tsx,md,mdx}' --max-warnings=0",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "jest",
     "tscheck": "tsc",
     "tscheck:watch": "tsc -w"
   },
