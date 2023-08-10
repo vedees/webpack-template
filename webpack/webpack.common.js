@@ -18,11 +18,48 @@ const isDev = process.env.NODE_ENV !== 'production'
 module.exports = {
   entry: {
     app: `${defines.src}/index.ts`
+    // another app example:
+    // auth: `${defines.src}/_auth/index.ts`
   },
   output: {
     path: defines.dist,
-    filename: `${defines.assets}js/[name].[contenthash].js`
+    // if you need hash:
+    // filename: `${defines.assets}js/[name].[contenthash].js`
+    // if you don't need hash:
+    filename: `${defines.assets}js/[name].js`
   },
+
+  // optimization (chunks)
+  optimization: {
+    chunkIds: 'named',
+    mergeDuplicateChunks: true,
+
+    splitChunks: {
+      chunks: 'async',
+      minSize: 20000,
+      minRemainingSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          name: 'vendors', // or comment name to make chunks works
+          chunks: 'all',
+          // the way to keep kit in the vendors
+          test: /[\\/]node_modules[\\/]|[\\/]ui-kit[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
+
   module: {
     rules: [
       // js(x) & ts(x)
@@ -114,6 +151,9 @@ module.exports = {
     // extract css from js / ts files (it's a basic setup to keep css in `css` folder)
     // https://webpack.js.org/plugins/mini-css-extract-plugin/
     new MiniCssExtractPlugin({
+      // if you need hash:
+      // filename: `${defines.assets}/css/[name].[contenthash].css`,
+      // if you don't need hash:
       filename: `${defines.assets}/css/[name].css`,
       chunkFilename: '[id].css'
     }),
