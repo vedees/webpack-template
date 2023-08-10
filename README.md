@@ -1,14 +1,23 @@
 <div align="center">
   <img width="200" height="200" src="https://webpack.js.org/assets/icon-square-big.svg">
-  <h1>Webpack Template Document</h1>
+  <h1>Webpack work template</h1>
   <p>
     Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.
   </p>
-  <p>Author: <a href="https://tocode.ru" target="_blank">To code</a> | <a href="https://www.youtube.com/playlist?list=PLkCrmfIT6LBQWN02hNj6r1daz7965GxsV" target="_blank">Youtube guide in Russian</a></p>
+  <p>Author: <a href="https://github.com/vedees/" target="_blank">Vedees</a> | <a href="https://www.youtube.com/playlist?list=PLkCrmfIT6LBQWN02hNj6r1daz7965GxsV" target="_blank">Youtube guide (ru)</a></p>
 </div>
 
-Everybody knows that developing runs on coffee!
-Thanks for your support!
+## Features:
+
+- separated configs for `dev` and `build` production
+- `typescript / js` full support
+- `sass / css` full support
+- full babel & postcss setup
+- 0 dependencies
+- the best optimization for your production
+- easy customization for webpack and babel
+
+Everybody knows that developing runs on coffee! Thanks for your support!
 
 [![Buy me a coffee][buymeacoffee-shield]][buymeacoffee]
 
@@ -24,8 +33,8 @@ cd webpack-template
 # Install dependencies:
 npm install
 
-# Server with hot reload at http://localhost:8081/
-npm run dev
+# Server with hot reload at http://localhost:8084/
+npm run start
 
 # Output will be at dist/ folder
 npm run build
@@ -33,254 +42,133 @@ npm run build
 
 ## Project Structure:
 
-- `src/index.html` - main app HTML
-- `src/assets/scss` - put custom app SCSS styles here. Don't forget to import them in `index.js`
-- `src/assets/css` - the same as above but CSS here. Don't forget to import them in `index.js`
-- `src/assets/img` - put images here. Don't forget to use correct path: `assets/img/some.jpg`
-- `src/js` - put custom app scripts here
-- `src/index.js` - main app file where you include/import all required libs and init app
-- `src/components` - folder with custom `.vue` components
-- `src/store` - app store for vue
-- `static/` - folder with extra static assets that will be copied into output folder
+- `public/*.html` - HTML files
+- `src/app` - core app
+- `src/shared` - shared files
+- `src/shared/img` - images folder (! for html calls use correct path: `static/img/some.jpg`)
+- `src/shared/misc` - misc files (i.g. favicon, sitemap, etc.)
+- `src/index.ts` - main app entity
+
+Core entry point:
+
+- `src/app/index.ts` - ts entry point
+- `src/app/index.scss` - css entry point
 
 <div align="center">
   <h2>Settings:</h2>
 </div>
 
-## Main const:
+## Config:
 
-Easy way to move all files.
 Default:
 
 ```js
 const PATHS = {
-  // Path to main app dir
+  // path to the Src dir
   src: path.join(__dirname, '../src'),
-  // Path to Output dir
+  // path to the Output dir
   dist: path.join(__dirname, '../dist'),
-  // Path to Second Output dir (js/css/fonts etc folder)
+  // path to your html files
+  public: path.join(__dirname, '../public')
+
+  // Path to Output sub dir (js, css, fonts, etc.)
   assets: 'assets/'
+  // Path to Output sub dir (img, icons, etc.)
+  static: 'static/'
 }
 ```
 
-## Customize:
+## Import libs:
 
-Change any folders:
+Install libs:
 
-```js
-const PATHS = {
-  // src must be src
-  src: path.join(__dirname, '../src'),
-  // dist to public
-  dist: path.join(__dirname, '../public'),
-  // assets to static
-  assets: 'static/'
-}
+```bash
+yarn add react react-dom
 ```
 
-## Import Another libs:
-
-1. Install libs
-2. Import libs in `./index.js`
+Import libs to `src/app/index.ts`:
 
 ```js
 // React example
 import React from 'react'
-// Bootstrap example
+
+// Bootstrap example (with custom js imports)
 import Bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 ```
 
-## Import only SASS or CSS libs:
+## Import SASS / CSS libs:
 
-1. Install libs
-2. Go to `/assets/scss/utils/libs.scss`
-3. Import libs in node modules
+Import libs to `src/app/index.scss`:
 
 ```scss
-// Sass librarys example:
+// Sass libs example:
 @import '../../node_modules/spinners/stylesheets/spinners';
-// CSS librarys example:
+// CSS libs example:
 @import '../../node_modules/flickity/dist/flickity.css';
 ```
 
-## Import js files:
+## HTML dir folder:
 
-1. Create another js module in `./js/` folder
-2. Import modules in `./js/index.js` file
-
-```js
-// another js file for example
-import './common.js'
-```
-
-## HTML Dir Folder:
-
-#### Default:
-
-- .html dir: `./src`
-- Configurations: in `./build/webpack.base.conf.js`
+1. Create another html file in `./public` (`defines.public` folder)
+2. Go to `./webpack/webpack.common.js`
+3. Add new page to the config:
 
 ```js
-const PAGES_DIR = PATHS.src
+    // index page:
+    new HtmlWebpackPlugin({
+      title: 'My app',
+      favicon: defines.src + '/shared/misc/favicon.ico',
+      // public/index.html page
+      template: defines.public + '/index.html',
+      filename: 'index.html' // output file
+    }),
+    // another page:
+    new HtmlWebpackPlugin({
+      title: 'My app',
+      favicon: defines.src + '/shared/misc/favicon.ico',
+      // public/another.html page
+      template: defines.public + '/another.html',
+      filename: 'index.html' // output file
+    }),
 ```
 
-**Usage:**
-All files must be created in the `./src` folder.
-Example:
+## Vue example:
+
+Install vue:
 
 ```bash
-./src/index.html
-./src/about.html
+yarn add vue
 ```
 
-#### Change HTML Default Dir Folder:
-
-Example for `./src/pages`:
-
-1. Create folder for all html files in `./src`. Be like: `./src/pages`
-2. Change `./build/webpack.base.conf.js` const PAGES_DIR:
+Init the app in `src/app/index.ts`:
 
 ```js
-// Old path
-// const PAGES_DIR = PATHS.src
-
-// Your new path
-const PAGES_DIR = `${PATHS.src}/pages`
-```
-
-3. Rerun webpack dev server
-
-**Usage:**
-All files must be created in the `./src/pages` folder.
-Example:
-
-```bash
-./src/pages/index.html
-./src/pages/about.html
-```
-
-## Create Another HTML Files:
-
-#### Default:
-
-Automatic creation any html pages:
-
-1. Create another html file in `./src` (main folder)
-2. Open new page `http://localhost:8081/about.html` (Don't forget to RERUN dev server)
-   See more - [commit](https://github.com/vedees/webpack-template/commit/249e3ae3b4973a7300f271045178f9f5f431bb89)
-
-#### Second method:
-
-Manual (not Automaticlly) creation any html pages (Don't forget to RERUN dev server and COMMENT lines above)
-
-1. Create another html file in `./src` (main folder)
-2. Go to `./build/webpack.base.conf.js`
-3. Comment lines above (create automaticlly html pages)
-4. Create new page in html:
-
-```js
-    new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/index.html`,
-      filename: './index.html',
-      inject: true
-    }),
-    new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/another.html`,
-      filename: './another.html',
-      inject: true
-    }),
-```
-
-5. Open new page `http://localhost:8081/about.html` (Don't forget to RERUN dev server)
-
-#### Third method: (BEST)
-
-Сombine the first method and the second.
-Example:
-
-```js
-    ...PAGES.map(page => new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/${page}`,
-      filename: `./${page}`
-    })),
-    new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/about/index.html`,
-      filename: './about/index.html',
-      inject: true
-    }),
-    new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/about/portfolio.html`,
-      filename: './about/portfolio.html',
-      inject: true
-    }),
-```
-
-## Vue install:
-
-Default: **already have**
-
-1. Install vue
-
-```bash
-npm install vue --save
-```
-
-2. Init vue `index.js`:
-
-```js
+// vue example (react one is above):
 const app = new Vue({
   el: '#app'
 })
 ```
 
-3. Create div id app
+Create div with id `app` in `public/index.html`:
 
 ```html
-<div id="app">
-  <!-- content -->
-</div>
+<div id="app"></div>
 ```
 
-## Vuex install:
+### Adding Vue Components:
 
-1. Install vuex
-
-```bash
-npm install vuex --save
-```
-
-2. Import Vuex
-
-```js
-import store from './store'
-```
-
-3. Create index.js in `./store`
-
-```js
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  // vuex content
-})
-```
-
-## Add Vue Components:
-
-Create your component in `/components/`
+Create your component in `src/app/components/`
 
 **HTML Usage:**
 
-1. Init component in `index.js`:
+Init component in `src/app/index.ts`:
 
 ```js
 Vue.component('example-component', require('./components/Example.vue').default)
 ```
 
-2. Any html files:
+In any html files:
 
 ```html
 <example-component />
@@ -288,72 +176,116 @@ Vue.component('example-component', require('./components/Example.vue').default)
 
 **VUE Usage:**
 
-1. import components in .vue:
+Import components in `*.vue`:
 
 ```js
-import example from '~/components/Example.vue'
+import ExampleComponent from '@/components/Example.vue'
 ```
 
-2. Register component:
+Register component:
 
 ```js
 components: {
-  example
+  Example: ExampleComponent
 }
 ```
 
-3. Init in vue component:
+Init it vue component:
+
+```js
+<Example />
+```
+
+## React example:
+
+Install react:
+
+```bash
+yarn add react react-dom
+```
+
+Create div with id `app` in `public/index.html`:
 
 ```html
-<example />
+<div id="app"></div>
+```
+
+Init the app in `src/app/index.ts`:
+
+```tsx
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+
+// app styles
+import './index.scss'
+
+// local providers:
+import { I18nProvider } from './providers/I18nProvider'
+
+const container = document.getElementById('app') as HTMLElement
+const root = createRoot(container)
+
+root.render(
+  <React.StrictMode>
+    <I18nProvider>...</I18nProvider>
+  </React.StrictMode>
+)
+```
+
+File `src/app/providers/I18nProvider.tsx`:
+
+```tsx
+import React, { FC, PropsWithChildren } from 'react'
+
+export const I18nProvider: FC<PropsWithChildren> = ({ children }) => {
+  // ...
+
+  return <I18n locale={detectedLocale}>{children}</I18n>
+}
 ```
 
 ## Add Fonts:
 
-Сhoose one of the ways:
+In case if you don't want to use Google Fonts...
 
-1. Handle menthod,
-2. Use mixin;
-
-### Handle:
-
-Add @font-face in `/assets/scss/utils/fonts.scss`:
+Add @font-face in some `.scss` file (i.g. `/src/app/styles/font.scss`):
 
 ```scss
-// Example with Helvetica
+// Open Sans
 @font-face {
-  font-family: 'Helvetica-Base';
-  src: url('/assets/fonts/Helvetica/Base/Helvetica-Base.eot'); /* IE9 Compat Modes */
-  src: url('/assets/fonts/Helvetica/Base/Helvetica-Base.eot?#iefix') format('embedded-opentype'),
-    /* IE6-IE8 */ url('/assets/fonts/Helvetica/Base/Helvetica-Base.woff') format('woff'),
-    /* Pretty Modern Browsers */
-      url('/assets/fonts/Helvetica/Base/Helvetica-Base.ttf') format('truetype'),
-    /* Safari, Android, iOS */
-      url('/assets/fonts/Helvetica/Base/Helvetica-Base.svg') format('svg'); /* Legacy iOS */
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url() format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 ```
 
-Add vars for font in `/assets/scss/utils/vars.scss`:
+Add your fonts to the: `/src/shared/fonts`
 
-```scss
-$mySecontFont: 'Helvetica-Base', Arial, sans-serif;
+Add copy files config in `/webpack/webpack.common.js`:
+
+```js
+new CopyWebpackPlugin({
+  // ...
+
+  // `shared/fonts` to `dist/static/fonts`
+  {
+    from: `${defines.src}/shared/fonts`,
+    to: `${defines.dist}/${defines.static}`
+  },
+})
 ```
 
-### Or with mixin:
+Change the font in `src/app/styles/body.scss`:
 
-By default template support only modern format fonts: .woff, .woffs;
-
-If ypu need svg or more formaths use another mixin in `src/assets/scss/utils/mixin.scss`
-
-**Usage:**
-
-1. Put your font to `src/assets/fonts/FOLDERNAME/FONTNAME`.
-   FOLLOW: Files Required:
-   Example: `.woff, .woffs` formats;
-2. Go to `fonts.scss`;
-3. Use mixin
-   Example: `@include font-face("OpenSans", "../fonts/OpenSans/opensans");`,
-   Example 2: `@include font-face("OpenSans", "../fonts/OpenSans/opensansItalic", 400, italic);`.
+```scss
+html {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol' !important;
+}
+```
 
 ## License:
 
