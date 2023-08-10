@@ -52,15 +52,9 @@ npm run build
 Core entry point:
 
 - `src/app/index.ts` - ts entry point
-- `src/app/index.scss` - css entry point
-
-<div align="center">
-  <h2>Settings:</h2>
-</div>
+- `src/app/index.scss` - scss entry point
 
 ## Config:
-
-Default:
 
 ```js
 const PATHS = {
@@ -69,21 +63,21 @@ const PATHS = {
   // path to the Output dir
   dist: path.join(__dirname, '../dist'),
   // path to your html files
-  public: path.join(__dirname, '../public')
+  public: path.join(__dirname, '../public'),
 
   // Path to Output sub dir (js, css, fonts, etc.)
-  assets: 'assets/'
+  assets: 'assets/',
   // Path to Output sub dir (img, icons, etc.)
   static: 'static/'
 }
 ```
 
-## Import libs:
+## Import libs example:
 
-Install libs:
+Install it:
 
 ```bash
-yarn add react react-dom
+yarn add bootstrap react react-dom
 ```
 
 Import libs to `src/app/index.ts`:
@@ -97,20 +91,20 @@ import Bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 ```
 
-## Import SASS / CSS libs:
+## Import SASS / CSS libs example:
 
 Import libs to `src/app/index.scss`:
 
 ```scss
-// Sass libs example:
+// sass lib import example:
 @import '../../node_modules/spinners/stylesheets/spinners';
-// CSS libs example:
+// css lib import example:
 @import '../../node_modules/flickity/dist/flickity.css';
 ```
 
 ## HTML dir folder:
 
-1. Create another html file in `./public` (`defines.public` folder)
+1. Create another html file in `./public`
 2. Go to `./webpack/webpack.common.js`
 3. Add new page to the config:
 
@@ -158,9 +152,9 @@ Create div with id `app` in `public/index.html`:
 
 ### Adding Vue Components:
 
-Create your component in `src/app/components/`
+Create your component in `src/app/components/`.
 
-**HTML Usage:**
+**HTML Usage (in `*.html` files):**
 
 Init component in `src/app/index.ts`:
 
@@ -174,15 +168,21 @@ In any html files:
 <example-component />
 ```
 
-**VUE Usage:**
+**VUE Usage (in `*.vue` files):**
 
-Import components in `*.vue`:
+Import component:
 
 ```js
 import ExampleComponent from '@/components/Example.vue'
 ```
 
-Register component:
+Init component (template):
+
+```js
+<Example />
+```
+
+Register component (script):
 
 ```js
 components: {
@@ -190,13 +190,9 @@ components: {
 }
 ```
 
-Init it vue component:
-
-```js
-<Example />
-```
-
 ## React example:
+
+Here's an example with React + i18n Provider.
 
 Install react:
 
@@ -244,7 +240,25 @@ export const I18nProvider: FC<PropsWithChildren> = ({ children }) => {
 }
 ```
 
-## Add Fonts:
+## Adding Google Fonts:
+
+Connect fonts to `public/index.html`:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet" />
+```
+
+Change the font in `src/app/styles/body.scss`:
+
+```scss
+html {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol' !important;
+}
+```
+
+## Adding local fonts:
 
 In case if you don't want to use Google Fonts...
 
@@ -263,7 +277,7 @@ Add @font-face in some `.scss` file (i.g. `/src/app/styles/font.scss`):
 }
 ```
 
-Add your fonts to the: `/src/shared/fonts`
+Paste your fonts to the: `/src/shared/fonts` (i.g. `/src/shared/fonts/OpenSans/...`).
 
 Add copy files config in `/webpack/webpack.common.js`:
 
