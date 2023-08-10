@@ -6,7 +6,8 @@ function replacementPlugin(env) {
 
 const sharedPlugins = [
   'preval',
-  // install it if you need
+
+  // install others if you need:
   // 'add-react-displayname',
   // 'babel-plugin-styled-components',
   // '@babel/plugin-proposal-nullish-coalescing-operator',

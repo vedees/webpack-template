@@ -1,6 +1,5 @@
 /* Base config:
   ========================================================================== */
-const path = require('path')
 
 //
 const defines = require('./webpack-defines')
@@ -12,20 +11,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // html support
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-// Main const
-const paths = {
-  src: path.join(__dirname, '../src'),
-  dist: path.join(__dirname, '../dist2'),
-  public: path.join(__dirname, '../public'),
-  assets: 'assets/'
-}
-
+// helpers:
+// I want one rule for development and production I use `isDev` to check the process
 const isDev = process.env.NODE_ENV !== 'production'
-
-// Pages const for HtmlWebpackPlugin
-// see more: https://github.com/vedees/webpack-template/blob/master/README.md#html-dir-folder
-// const PAGES_DIR = paths.src
-// const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.html'))
 
 module.exports = {
   entry: {
@@ -37,6 +25,7 @@ module.exports = {
   },
   module: {
     rules: [
+      // js(x) & ts(x)
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
@@ -113,31 +102,23 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    alias: {
-      '@': defines.src
-    }
-  },
   plugins: [
-    // html
+    // html pages:
     new HtmlWebpackPlugin({
       title: 'My app',
-      // favicon: paths.src + '/assets/icons/favicon.png',
-      // template file
+      favicon: defines.src + '/shared/misc/favicon.ico',
       template: defines.public + '/index.html',
-      // output file
-      filename: 'index.html'
+      filename: 'index.html' // output file
     }),
 
-    // Extract css from js (it's a basic setup to keep css in `css` folder)
+    // extract css from js / ts files (it's a basic setup to keep css in `css` folder)
     // https://webpack.js.org/plugins/mini-css-extract-plugin/
     new MiniCssExtractPlugin({
       filename: `${defines.assets}/css/[name].css`,
       chunkFilename: '[id].css'
     }),
 
-    // Copies files from target to destination folder
-    // PS: do not pass const to the `to` key
+    // copy files from target to destination folder
     new CopyWebpackPlugin({
       patterns: [
         // `shared/img` to `dist/static/img`
@@ -165,7 +146,8 @@ module.exports = {
 
   resolve: {
     alias: {
-      // no need since I use `tsconfig` or `jsconfig`
+      // no need since I use `tsconfig` & `jsconfig`
+      // '@': defines.src
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx']
   }

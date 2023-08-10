@@ -1,10 +1,10 @@
 /*
-  TypeScript compiler is NOT using for build the project!
-  so here's only type-checking options
+  TypeScript compiler is NOT using for build!
 
+  so here's only type-checking options
   use: `yarn tscheck` or `yarn tscheck:watch`
 
-  you can also set up eslint in vs-code to see live time errors without `tscheck`
+  you can set up eslint in vs-code to see live time errors without `tscheck`
 */
 
 {
@@ -42,5 +42,5 @@
   "exclude": ["scripts", "webpack", "dist", "node_modules", "**/*.spec.ts"],
 
   // ? .jsx seems useless
-  "include": ["*.d.ts", "src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/*.d.ts", "src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
 }
