@@ -9,13 +9,13 @@
 
 ## Features:
 
-- separated configs for `dev` and `build` production
-- `typescript / js` full support
+- separated configs for `dev` and `prod`
+- `typescript / javascript` full support
 - `sass / css` full support
 - full babel & postcss setup
 - 0 dependencies
 - the best optimization for your production
-- easy customization for webpack and babel
+- easy webpack and babel customization
 
 Everybody knows that developing runs on coffee! Thanks for your support!
 
@@ -31,13 +31,19 @@ git clone https://github.com/vedees/webpack-template webpack-template
 cd webpack-template
 
 # Install dependencies:
-npm install
+# npm install
+# or:
+yarn
 
 # Server with hot reload at http://localhost:8084/
-npm run start
+# npm run start
+# or:
+yarn start
 
 # Output will be at dist/ folder
-npm run build
+# npm run build
+# or:
+yarn build
 ```
 
 ## Project Structure:
