@@ -55,10 +55,14 @@ yarn build
 - `src/shared/misc` - misc files (i.g. favicon, sitemap, etc.)
 - `src/index.ts` - main app entity
 
-Core entry point:
+Configs:
 
-- `src/app/index.ts` - ts entry point
-- `src/app/index.scss` - scss entry point
+- `/babel-defines.js` - config for babel
+- `/webpack/webpack-defines.js` - config for webpack
+
+Main entry point:
+
+- `src/app/index.ts` - core entry point
 
 ## Config:
 
@@ -119,17 +123,15 @@ Import libs to `src/app/index.scss`:
     new HtmlWebpackPlugin({
       title: 'My app',
       favicon: defines.src + '/shared/misc/favicon.ico',
-      // public/index.html page
-      template: defines.public + '/index.html',
+      template: defines.public + '/index.html', // public/index.html page
       filename: 'index.html' // output file
     }),
     // another page:
     new HtmlWebpackPlugin({
       title: 'My app',
       favicon: defines.src + '/shared/misc/favicon.ico',
-      // public/another.html page
-      template: defines.public + '/another.html',
-      filename: 'index.html' // output file
+      template: defines.public + '/another.html', // public/another.html page
+      filename: 'another.html' // output file
     }),
 ```
 
@@ -266,19 +268,22 @@ html {
 
 ## Adding local fonts:
 
-In case if you don't want to use Google Fonts...
+In case if you don't want to use Google Fonts:
 
-Add @font-face in some `.scss` file (i.g. `/src/app/styles/font.scss`):
+- Download fonts
+- Add fonts to the `src/shared/fonts/FontName/`
+
+Then add `@font-face` in some `.scss` file (i.g. `/src/app/styles/font.scss`):
 
 ```scss
-// Open Sans
+// Open Sans example:
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
   font-stretch: 100%;
   font-display: swap;
-  src: url() format('woff2');
+  src: url('/static/fonts/OpenSans/Open-Sans.woff2') format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 ```
@@ -294,7 +299,7 @@ new CopyWebpackPlugin({
   // `shared/fonts` to `dist/static/fonts`
   {
     from: `${defines.src}/shared/fonts`,
-    to: `${defines.dist}/${defines.static}`
+    to: `${defines.dist}/${defines.static}/fonts`
   },
 })
 ```
