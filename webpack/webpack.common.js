@@ -152,9 +152,9 @@ module.exports = {
     // https://webpack.js.org/plugins/mini-css-extract-plugin/
     new MiniCssExtractPlugin({
       // if you need hash:
-      // filename: `${defines.assets}/css/[name].[contenthash].css`,
+      // filename: `${defines.assets}css/[name].[contenthash].css`,
       // if you don't need hash:
-      filename: `${defines.assets}/css/[name].css`,
+      filename: `${defines.assets}css/[name].css`,
       chunkFilename: '[id].css'
     }),
 
@@ -164,21 +164,21 @@ module.exports = {
         // `shared/img` to `dist/static/img`
         {
           from: `${defines.src}/shared/img`,
-          to: `${defines.dist}/${defines.static}`
+          to: `${defines.dist}/${defines.static}/img`
         },
 
         // others:
         // `shared/fonts` to `dist/static/fonts`
         // {
         //   from: `${defines.src}/shared/fonts`,
-        //   to: `${defines.dist}/${defines.static}`
+        //   to: `${defines.dist}/${defines.static}/fonts`
         // },
 
         // misc
         // `shared/misc` to `dist/`
         {
-          from: `${defines.src}/shared/img`,
-          to: `${defines.dist}/${defines.static}`
+          from: `${defines.src}/shared/misc`,
+          to: `${defines.dist}`
         }
       ]
     })

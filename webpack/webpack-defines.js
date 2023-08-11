@@ -2,13 +2,13 @@
 
 const path = require('path')
 
-const core = {
+const dirs = {
   src: path.join(__dirname, '../src'),
   dist: path.join(__dirname, '../dist'),
   public: path.join(__dirname, '../public')
 }
 
-const subs = {
+const subDirs = {
   // sub folder for css / js
   // i.g. `dist/assets/css/` & dist/assets/js/
   assets: 'assets/',
@@ -19,6 +19,6 @@ const subs = {
 }
 
 module.exports = {
-  ...core,
-  ...subs
+  ...dirs,
+  ...subDirs
 }
