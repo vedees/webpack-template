@@ -3,6 +3,7 @@
 
 //
 const defines = require('./webpack-defines')
+const pages = require('./webpack-pages')
 
 // copy files from dev (i.g. `assets/img/*`) to dist (i.g `static/img/*`)
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -141,12 +142,32 @@ module.exports = {
   },
   plugins: [
     // html pages:
-    new HtmlWebpackPlugin({
-      title: 'My app',
-      favicon: defines.src + '/shared/misc/favicon.ico',
-      template: defines.public + '/index.html',
-      filename: 'index.html' // output file
-    }),
+
+    // can be manually (one by one):
+    // new HtmlWebpackPlugin({
+    //   title: 'Home page',
+    //   favicon: defines.src + '/shared/misc/favicon.ico',
+    //   template: defines.public + '/index.html',
+    //   filename: 'index.html' // output file
+    // }),
+    // new HtmlWebpackPlugin({
+    //   title: 'About page',
+    //   favicon: defines.src + '/shared/misc/favicon.ico',
+    //   template: defines.public + '/about.html',
+    //   filename: 'about.html' // output file
+    // }),
+
+    // or by config (from `webpack-pages.js`):
+    ...pages.map(
+      page =>
+        new HtmlWebpackPlugin({
+          title: page.title,
+          template: defines.public + '/' + page.template,
+          filename: page.filename,
+          // default:
+          favicon: defines.src + '/shared/misc/favicon.ico'
+        })
+    ),
 
     // extract css from js / ts files (it's a basic setup to keep css in `css` folder)
     // https://webpack.js.org/plugins/mini-css-extract-plugin/

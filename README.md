@@ -58,28 +58,84 @@ yarn build
 Configs:
 
 - `/babel-defines.js` - config for babel
-- `/webpack/webpack-defines.js` - config for webpack
+- `/webpack/webpack-pages.js` - config for html pages
+- `/webpack/webpack-defines.js` - config for entire webpack
 
 Main entry point:
 
 - `src/app/index.ts` - core entry point
 
-## Config:
+## Defines:
+
+Core webpack config from `/webpack/webpack-defines.js`:
 
 ```js
 const PATHS = {
-  // path to the Src dir
+  // path to the src dir
   src: path.join(__dirname, '../src'),
-  // path to the Output dir
+  // path to the output dir
   dist: path.join(__dirname, '../dist'),
-  // path to your html files
+  // path to the public files (html files)
   public: path.join(__dirname, '../public'),
 
-  // Path to Output sub dir (js, css, fonts, etc.)
+  // path to output sub dir (js, css, fonts, etc.)
   assets: 'assets/',
-  // Path to Output sub dir (img, icons, etc.)
+  // path to output sub dir (img, icons, etc.)
   static: 'static/'
 }
+```
+
+## Pages config:
+
+Pages config from `/webpack/webpack-pages.js`:
+
+```js
+const pages = [
+  {
+    // page title
+    title: 'Home page',
+    // template name `public/index.html`
+    template: 'index.html',
+    // output filename `dist/index.html`
+    filename: 'index.html',
+
+    // other options can be here
+  },
+  {
+    title: 'About page',
+    template: 'about.html',
+    filename: 'about.html',
+  }
+]
+```
+
+You can pass a hash of configuration options to html-webpack-plugin.
+
+Allowed values are as follows:  https://github.com/jantimon/html-webpack-plugin#options
+
+## Manual pages setup:
+
+In case if you don't want to use Pages config:
+
+1. Create another html file in `./public`
+2. Go to `./webpack/webpack.common.js`
+3. Add new page to the config:
+
+```js
+    // index page:
+    new HtmlWebpackPlugin({
+      title: 'Home page',
+      favicon: defines.src + '/shared/misc/favicon.ico',
+      template: defines.public + '/index.html', // public/index.html page
+      filename: 'index.html' // output file
+    }),
+    // about page:
+    new HtmlWebpackPlugin({
+      title: 'About page',
+      favicon: defines.src + '/shared/misc/favicon.ico',
+      template: defines.public + '/about.html', // public/about.html page
+      filename: 'about.html' // output file
+    }),
 ```
 
 ## Import libs example:
@@ -112,27 +168,54 @@ Import libs to `src/app/index.scss`:
 @import '../../node_modules/flickity/dist/flickity.css';
 ```
 
-## HTML dir folder:
+## React example:
 
-1. Create another html file in `./public`
-2. Go to `./webpack/webpack.common.js`
-3. Add new page to the config:
+Here's an example with React + i18n Provider.
 
-```js
-    // index page:
-    new HtmlWebpackPlugin({
-      title: 'My app',
-      favicon: defines.src + '/shared/misc/favicon.ico',
-      template: defines.public + '/index.html', // public/index.html page
-      filename: 'index.html' // output file
-    }),
-    // another page:
-    new HtmlWebpackPlugin({
-      title: 'My app',
-      favicon: defines.src + '/shared/misc/favicon.ico',
-      template: defines.public + '/another.html', // public/another.html page
-      filename: 'another.html' // output file
-    }),
+Install react:
+
+```bash
+yarn add react react-dom
+```
+
+Create div with id `app` in `public/index.html`:
+
+```html
+<div id="app"></div>
+```
+
+Init the app in `src/app/index.ts`:
+
+```tsx
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+
+// app styles
+import './index.scss'
+
+// local providers:
+import { I18nProvider } from './providers/I18nProvider'
+
+const container = document.getElementById('app') as HTMLElement
+const root = createRoot(container)
+
+root.render(
+  <React.StrictMode>
+    <I18nProvider>...</I18nProvider>
+  </React.StrictMode>
+)
+```
+
+File `src/app/providers/I18nProvider.tsx`:
+
+```tsx
+import React, { FC, PropsWithChildren } from 'react'
+
+export const I18nProvider: FC<PropsWithChildren> = ({ children }) => {
+  // ...
+
+  return <I18n locale={detectedLocale}>{children}</I18n>
+}
 ```
 
 ## Vue example:
@@ -198,56 +281,6 @@ components: {
 }
 ```
 
-## React example:
-
-Here's an example with React + i18n Provider.
-
-Install react:
-
-```bash
-yarn add react react-dom
-```
-
-Create div with id `app` in `public/index.html`:
-
-```html
-<div id="app"></div>
-```
-
-Init the app in `src/app/index.ts`:
-
-```tsx
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-
-// app styles
-import './index.scss'
-
-// local providers:
-import { I18nProvider } from './providers/I18nProvider'
-
-const container = document.getElementById('app') as HTMLElement
-const root = createRoot(container)
-
-root.render(
-  <React.StrictMode>
-    <I18nProvider>...</I18nProvider>
-  </React.StrictMode>
-)
-```
-
-File `src/app/providers/I18nProvider.tsx`:
-
-```tsx
-import React, { FC, PropsWithChildren } from 'react'
-
-export const I18nProvider: FC<PropsWithChildren> = ({ children }) => {
-  // ...
-
-  return <I18n locale={detectedLocale}>{children}</I18n>
-}
-```
-
 ## Adding Google Fonts:
 
 Connect fonts to `public/index.html`:
@@ -271,7 +304,7 @@ html {
 In case if you don't want to use Google Fonts:
 
 - Download fonts
-- Add fonts to the `src/shared/fonts/FontName/`
+- Add fonts to the (i.g. `/src/shared/fonts/OpenSans/...`).
 
 Then add `@font-face` in some `.scss` file (i.g. `/src/app/styles/font.scss`):
 
@@ -288,9 +321,9 @@ Then add `@font-face` in some `.scss` file (i.g. `/src/app/styles/font.scss`):
 }
 ```
 
-Paste your fonts to the: `/src/shared/fonts` (i.g. `/src/shared/fonts/OpenSans/...`).
+The last step is to copy these fonts into the `/dist` folder every time you build the project.
 
-Add copy files config in `/webpack/webpack.common.js`:
+Add another config for `CopyWebpackPlugin` to `/webpack/webpack.common.js`:
 
 ```js
 new CopyWebpackPlugin({

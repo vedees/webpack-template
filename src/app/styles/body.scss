@@ -6,19 +6,19 @@
 
 body,
 html {
-  height: 100%;
   margin: 0;
   padding: 0;
 }
 
 html {
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol' !important;
-  font-size: 18px;
-  //
   scroll-behaviour: smooth;
 }
 
 body {
   position: relative;
-  text-rendering: optimizeSpeed;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Roboto, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-size: 18px;
+  fill: currentcolor;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
